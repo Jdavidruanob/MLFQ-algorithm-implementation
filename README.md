@@ -1,2 +1,2 @@
 # os
-Lear Operative Systems, Practice Exercises
+Practice Exercise about schedulling of my operative systems university course
