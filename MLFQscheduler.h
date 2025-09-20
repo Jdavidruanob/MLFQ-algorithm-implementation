@@ -1,32 +1,34 @@
-// In a new file: MLFQScheduler.h
+#ifndef MLFQScheduler_H
+#define MLFQScheduler_H
+
 #include <vector>
 #include <queue>
 #include <string>
 #include "Process.h"
 
-
 class MLFQScheduler {
 private:
-    std::vector<std::queue<Process*>> queues; // A vector of queues, each holding pointers to Processes
-    std::vector<int> timeQuantums;            // Stores the time quantum for each respective queue
-    std::string lastQueueAlgorithm;           // e.g., "SJF" or "STCF"
+    std::vector<std::queue<Process*>> queues;
+    std::vector<int> timeQuantums;
+    std::string lastQueueAlgorithm;
     
     int currentTime = 0;
     
-    // This vector will hold all processes for loading and final reporting
-    std::vector<Process> allProcesses; 
+    std::vector<Process> allProcesses;
+
+private:
+    // Helper methods for the simulation logic
+    void admitNewProcesses();
+    void findAndPromoteBestProcess();
 
 public:
-    // Constructor to set up the scheduler with specific queue rules
+    // Constructor
     MLFQScheduler(const std::vector<int>& p_quantums, const std::string& p_lastQueueAlgo);
 
     // Main methods
     void loadProcessesFromFile(const std::string& filename);
     void run();
-    void printResults();
-
-private:
-    // Helper methods for the simulation logic
-    void admitNewProcesses();
-    Process* getNextSTCFProcess(); // Example helper for the last queue
+    void printResults(const std::string& outputFilename);
 };
+
+#endif //MLFQScheduler_H

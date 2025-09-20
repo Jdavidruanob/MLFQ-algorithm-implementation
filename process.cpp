@@ -8,14 +8,14 @@ Process::Process(std::string p_id, int p_burstTime, int p_arrivalTime) {
     arrivalTime = p_arrivalTime;
 
     // Set default/initial states for the scheduler
-    remainingTime = burstTime; // A process starts with its full burst time remaining
-    currentQueueIndex = 0;     // All processes start at the highest priority queue (index 0)
-    timeSliceUsed = 0;         // Initialize time slice used to zero
+    remainingTime = burstTime;
+    currentQueueIndex = 0;
     
-    // Initialize metrics to zero
+    // Initialize metrics to zero or default values
     completionTime = 0;
     waitingTime = 0;
     responseTime = -1; // Use -1 to indicate it hasn't been calculated yet
     turnaroundTime = 0;
     hasStartedExecution = false;
+    timeSliceUsed = 0;
 }
